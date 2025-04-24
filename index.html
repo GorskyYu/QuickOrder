@@ -2,19 +2,23 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>本期特價 - CAA Costco April - May</title>
+  <title>QuickOrder v5.3</title>
   <style>
     body { font-family: sans-serif; padding: 20px; }
     table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
     th, td { border: 1px solid #ccc; padding: 8px; text-align: center; vertical-align: middle; }
     th { background-color: #f2f2f2; }
+    input[type='number'], input[type='email'] { width: 80px; text-align: center; }
     button { padding: 4px 10px; }
-    input[type='number'] { width: 60px; text-align: center; }
     img { width: 80px; height: auto; }
+    #totalBox { font-weight: bold; margin-top: 20px; }
   </style>
 </head>
 <body>
-<h2>本期特價 - CAA Costco April - May</h2>
+<h2>QuickOrder v5.3 報價系統</h2>
+
+<p><label>📧 Email：<input type="email" id="email" required></label></p>
+
 <table>
   <tr>
     <th>圖片</th>
@@ -22,6 +26,7 @@
     <th>規格</th>
     <th>價格</th>
     <th>數量</th>
+    <th>小計</th>
   </tr>
   <tr>
     <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744202008647.jpg" alt="Zavida Vanilla & Hazelnut"></td>
@@ -29,10 +34,9 @@
     <td>907g</td>
     <td>651</td>
     <td>
-      <button onclick="adjustQty('item1', -1)">-</button>
-      <input type="number" id="item1" value="0" min="0" max="99999" step="1" pattern="\d*">
-      <button onclick="adjustQty('item1', 1)">+</button>
+      <input type="number" id="item1" value="0" min="0" max="99999" step="1" pattern="\d*" oninput="calculateTotal()">
     </td>
+    <td id="subtotal1">0</td>
   </tr>
   <tr>
     <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744373739119.jpg" alt="MadeGood Granola Minis"></td>
@@ -40,10 +44,9 @@
     <td>24x24g</td>
     <td>463</td>
     <td>
-      <button onclick="adjustQty('item2', -1)">-</button>
-      <input type="number" id="item2" value="0" min="0" max="99999" step="1" pattern="\d*">
-      <button onclick="adjustQty('item2', 1)">+</button>
+      <input type="number" id="item2" value="0" min="0" max="99999" step="1" pattern="\d*" oninput="calculateTotal()">
     </td>
+    <td id="subtotal2">0</td>
   </tr>
   <tr>
     <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744366451660.jpg" alt="Flamingo 5-Blade Razor + 13 Cartridges"></td>
@@ -51,10 +54,9 @@
     <td>-</td>
     <td>900</td>
     <td>
-      <button onclick="adjustQty('item3', -1)">-</button>
-      <input type="number" id="item3" value="0" min="0" max="99999" step="1" pattern="\d*">
-      <button onclick="adjustQty('item3', 1)">+</button>
+      <input type="number" id="item3" value="0" min="0" max="99999" step="1" pattern="\d*" oninput="calculateTotal()">
     </td>
+    <td id="subtotal3">0</td>
   </tr>
   <tr>
     <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744366803996.jpg" alt="Webber Naturals Super Prostate Advanced"></td>
@@ -62,10 +64,9 @@
     <td>180ct</td>
     <td>707</td>
     <td>
-      <button onclick="adjustQty('item4', -1)">-</button>
-      <input type="number" id="item4" value="0" min="0" max="99999" step="1" pattern="\d*">
-      <button onclick="adjustQty('item4', 1)">+</button>
+      <input type="number" id="item4" value="0" min="0" max="99999" step="1" pattern="\d*" oninput="calculateTotal()">
     </td>
+    <td id="subtotal4">0</td>
   </tr>
   <tr>
     <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744366987389.jpg" alt="Webber Naturals Magnesium Bisglycinate"></td>
@@ -73,10 +74,9 @@
     <td>300 caps</td>
     <td>707</td>
     <td>
-      <button onclick="adjustQty('item5', -1)">-</button>
-      <input type="number" id="item5" value="0" min="0" max="99999" step="1" pattern="\d*">
-      <button onclick="adjustQty('item5', 1)">+</button>
+      <input type="number" id="item5" value="0" min="0" max="99999" step="1" pattern="\d*" oninput="calculateTotal()">
     </td>
+    <td id="subtotal5">0</td>
   </tr>
   <tr>
     <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744367166850.jpg" alt="Webber Naturals Krill Oil Plus"></td>
@@ -84,10 +84,9 @@
     <td>120 pcs</td>
     <td>707</td>
     <td>
-      <button onclick="adjustQty('item6', -1)">-</button>
-      <input type="number" id="item6" value="0" min="0" max="99999" step="1" pattern="\d*">
-      <button onclick="adjustQty('item6', 1)">+</button>
+      <input type="number" id="item6" value="0" min="0" max="99999" step="1" pattern="\d*" oninput="calculateTotal()">
     </td>
+    <td id="subtotal6">0</td>
   </tr>
   <tr>
     <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744367365045.jpg" alt="Webber Naturals Lutein 25mg + Zeaxanthin"></td>
@@ -95,10 +94,9 @@
     <td>175 softgels</td>
     <td>471</td>
     <td>
-      <button onclick="adjustQty('item7', -1)">-</button>
-      <input type="number" id="item7" value="0" min="0" max="99999" step="1" pattern="\d*">
-      <button onclick="adjustQty('item7', 1)">+</button>
+      <input type="number" id="item7" value="0" min="0" max="99999" step="1" pattern="\d*" oninput="calculateTotal()">
     </td>
+    <td id="subtotal7">0</td>
   </tr>
   <tr>
     <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744367936656.jpg" alt="Jamieson Vitamin B12 1200 mcg"></td>
@@ -106,10 +104,9 @@
     <td>200 tabs</td>
     <td>512</td>
     <td>
-      <button onclick="adjustQty('item8', -1)">-</button>
-      <input type="number" id="item8" value="0" min="0" max="99999" step="1" pattern="\d*">
-      <button onclick="adjustQty('item8', 1)">+</button>
+      <input type="number" id="item8" value="0" min="0" max="99999" step="1" pattern="\d*" oninput="calculateTotal()">
     </td>
+    <td id="subtotal8">0</td>
   </tr>
   <tr>
     <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744368095399.jpg" alt="Jamieson Calcium Magnesium + D3"></td>
@@ -117,10 +114,9 @@
     <td>500 caplets</td>
     <td>407</td>
     <td>
-      <button onclick="adjustQty('item9', -1)">-</button>
-      <input type="number" id="item9" value="0" min="0" max="99999" step="1" pattern="\d*">
-      <button onclick="adjustQty('item9', 1)">+</button>
+      <input type="number" id="item9" value="0" min="0" max="99999" step="1" pattern="\d*" oninput="calculateTotal()">
     </td>
+    <td id="subtotal9">0</td>
   </tr>
   <tr>
     <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744368380962.jpg" alt="Centrum Men 50+ Multivitamin"></td>
@@ -128,10 +124,9 @@
     <td>250 tabs</td>
     <td>741</td>
     <td>
-      <button onclick="adjustQty('item10', -1)">-</button>
-      <input type="number" id="item10" value="0" min="0" max="99999" step="1" pattern="\d*">
-      <button onclick="adjustQty('item10', 1)">+</button>
+      <input type="number" id="item10" value="0" min="0" max="99999" step="1" pattern="\d*" oninput="calculateTotal()">
     </td>
+    <td id="subtotal10">0</td>
   </tr>
   <tr>
     <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744368901548.jpg" alt="Centrum Women 50+ Multivitamin"></td>
@@ -139,10 +134,9 @@
     <td>250 tabs</td>
     <td>741</td>
     <td>
-      <button onclick="adjustQty('item11', -1)">-</button>
-      <input type="number" id="item11" value="0" min="0" max="99999" step="1" pattern="\d*">
-      <button onclick="adjustQty('item11', 1)">+</button>
+      <input type="number" id="item11" value="0" min="0" max="99999" step="1" pattern="\d*" oninput="calculateTotal()">
     </td>
+    <td id="subtotal11">0</td>
   </tr>
   <tr>
     <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744369009086.jpg" alt="Centrum Women Multivitamin"></td>
@@ -150,10 +144,9 @@
     <td>250 tabs</td>
     <td>741</td>
     <td>
-      <button onclick="adjustQty('item12', -1)">-</button>
-      <input type="number" id="item12" value="0" min="0" max="99999" step="1" pattern="\d*">
-      <button onclick="adjustQty('item12', 1)">+</button>
+      <input type="number" id="item12" value="0" min="0" max="99999" step="1" pattern="\d*" oninput="calculateTotal()">
     </td>
+    <td id="subtotal12">0</td>
   </tr>
   <tr>
     <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744369181478.jpg" alt="Centrum Men Multivitamin"></td>
@@ -161,57 +154,70 @@
     <td>250 tabs</td>
     <td>741</td>
     <td>
-      <button onclick="adjustQty('item13', -1)">-</button>
-      <input type="number" id="item13" value="0" min="0" max="99999" step="1" pattern="\d*">
-      <button onclick="adjustQty('item13', 1)">+</button>
+      <input type="number" id="item13" value="0" min="0" max="99999" step="1" pattern="\d*" oninput="calculateTotal()">
     </td>
+    <td id="subtotal13">0</td>
   </tr>
 
 </table>
-<button onclick="submitQuote()">Submit</button>
+
+<div id="totalBox">💰 總金額：<span id="totalAmount">0</span> 元</div>
+<br>
+<button onclick="submitOrder()">Submit</button>
+
 <script>
-  function adjustQty(id, delta) {
-    const input = document.getElementById(id);
-    let val = parseInt(input.value) + delta;
-    if (isNaN(val)) val = 0;
-    if (val < 0) val = 0;
-    if (val > 99999) val = 99999;
-    input.value = val;
+  const prices = [651,463,900,707,707,707,471,512,407,741,741,741,741];
+
+  function calculateTotal() {
+    let total = 0;
+    for (let i = 1; i <= 13; i++) {
+      const qty = parseInt(document.getElementById('item' + i).value) || 0;
+      const subtotal = qty * prices[i - 1];
+      document.getElementById('subtotal' + i).innerText = subtotal;
+      total += subtotal;
+    }
+    document.getElementById('totalAmount').innerText = total;
+    return total;
   }
 
-  function submitQuote() {
-    const items = [
-      { name: 'Zavida Vanilla & Hazelnut', qty: document.getElementById('item1').value },
-      { name: 'MadeGood Granola Minis', qty: document.getElementById('item2').value },
-      { name: 'Flamingo 5-Blade Razor + 13 Cartridges', qty: document.getElementById('item3').value },
-      { name: 'Webber Naturals Super Prostate Advanced', qty: document.getElementById('item4').value },
-      { name: 'Webber Naturals Magnesium Bisglycinate', qty: document.getElementById('item5').value },
-      { name: 'Webber Naturals Krill Oil Plus', qty: document.getElementById('item6').value },
-      { name: 'Webber Naturals Lutein 25mg + Zeaxanthin', qty: document.getElementById('item7').value },
-      { name: 'Jamieson Vitamin B12 1200 mcg', qty: document.getElementById('item8').value },
-      { name: 'Jamieson Calcium Magnesium + D3', qty: document.getElementById('item9').value },
-      { name: 'Centrum Men 50+ Multivitamin', qty: document.getElementById('item10').value },
-      { name: 'Centrum Women 50+ Multivitamin', qty: document.getElementById('item11').value },
-      { name: 'Centrum Women Multivitamin', qty: document.getElementById('item12').value },
-      { name: 'Centrum Men Multivitamin', qty: document.getElementById('item13').value },
-    ];
-
-    let lines = [];
-    items.forEach(item => {
-      if (parseInt(item.qty) > 0) {
-        lines.push(`- ${item.name}：${item.qty} 件`);
-      }
-    });
-
-    if (lines.length === 0) {
-      alert('請至少選擇一個商品數量');
+  function submitOrder() {
+    const email = document.getElementById('email').value.trim();
+    if (!email) {
+      alert("請輸入 Email");
       return;
     }
 
-    const subject = '提交訂單';
-    const bodyText = '您好，我要採購以下商品：\n' + lines.join('\n');
-    const mailtoLink = `mailto:gorskyyu1024@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
-    window.location.href = mailtoLink;
+    let lines = [];
+    for (let i = 1; i <= 13; i++) {
+      const qty = parseInt(document.getElementById('item' + i).value) || 0;
+      if (qty > 0) {
+        const name = document.querySelectorAll('table tr')[i].children[1].innerText;
+        lines.push("- " + name + " x" + qty);
+      }
+    }
+
+    if (lines.length === 0) {
+      alert("請至少選擇一項商品");
+      return;
+    }
+
+    const total = calculateTotal();
+    const items = lines.join('\n');
+
+    // 1️⃣ 寫入 Google Sheets
+    fetch("https://script.google.com/macros/s/AKfycbxs6oz0NWC7WOtkiaSAHsHEMmDWUjmvYTsGmGnJP_TCO5cguXtRt6djgwsm1PSh37KY/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, items, total })
+    }).then(res => res.text()).then(() => {
+      // 2️⃣ 開啟 Gmail 撰寫畫面
+      const subject = "提交訂單";
+      const body = "您好，我要採購以下商品：\n" + items + "\n\n總金額：" + total + " 元";
+      const gmailLink = "https://mail.google.com/mail/?view=cm&fs=1&to=gorskyyu1024@gmail.com&su=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      window.open(gmailLink, "_blank");
+    }).catch(err => {
+      alert("提交失敗：" + err);
+    });
   }
 </script>
 </body>
