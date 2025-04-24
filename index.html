@@ -1,8 +1,218 @@
 <!DOCTYPE html>
-<html>
-  <head><meta charset="UTF-8"><title>QuickOrder</title></head>
-  <body>
-    <h1>歡迎使用 QuickOrder 報價系統</h1>
-    <p>請上傳你的 index.html 並開啟 GitHub Pages。</p>
-  </body>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>本期特價 - CAA Costco April - May</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; vertical-align: middle; }
+    th { background-color: #f2f2f2; }
+    button { padding: 4px 10px; }
+    input[type='number'] { width: 60px; text-align: center; }
+    img { width: 80px; height: auto; }
+  </style>
+</head>
+<body>
+<h2>本期特價 - CAA Costco April - May</h2>
+<table>
+  <tr>
+    <th>圖片</th>
+    <th>品名</th>
+    <th>規格</th>
+    <th>價格</th>
+    <th>數量</th>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744202008647.jpg" alt="Zavida Vanilla & Hazelnut"></td>
+    <td>Zavida Vanilla & Hazelnut</td>
+    <td>907g</td>
+    <td>651</td>
+    <td>
+      <button onclick="adjustQty('item1', -1)">-</button>
+      <input type="number" id="item1" value="0" min="0" max="99999" step="1" pattern="\d*">
+      <button onclick="adjustQty('item1', 1)">+</button>
+    </td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744373739119.jpg" alt="MadeGood Granola Minis"></td>
+    <td>MadeGood Granola Minis</td>
+    <td>24x24g</td>
+    <td>463</td>
+    <td>
+      <button onclick="adjustQty('item2', -1)">-</button>
+      <input type="number" id="item2" value="0" min="0" max="99999" step="1" pattern="\d*">
+      <button onclick="adjustQty('item2', 1)">+</button>
+    </td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744366451660.jpg" alt="Flamingo 5-Blade Razor + 13 Cartridges"></td>
+    <td>Flamingo 5-Blade Razor + 13 Cartridges</td>
+    <td>-</td>
+    <td>900</td>
+    <td>
+      <button onclick="adjustQty('item3', -1)">-</button>
+      <input type="number" id="item3" value="0" min="0" max="99999" step="1" pattern="\d*">
+      <button onclick="adjustQty('item3', 1)">+</button>
+    </td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744366803996.jpg" alt="Webber Naturals Super Prostate Advanced"></td>
+    <td>Webber Naturals Super Prostate Advanced</td>
+    <td>180ct</td>
+    <td>707</td>
+    <td>
+      <button onclick="adjustQty('item4', -1)">-</button>
+      <input type="number" id="item4" value="0" min="0" max="99999" step="1" pattern="\d*">
+      <button onclick="adjustQty('item4', 1)">+</button>
+    </td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744366987389.jpg" alt="Webber Naturals Magnesium Bisglycinate"></td>
+    <td>Webber Naturals Magnesium Bisglycinate</td>
+    <td>300 caps</td>
+    <td>707</td>
+    <td>
+      <button onclick="adjustQty('item5', -1)">-</button>
+      <input type="number" id="item5" value="0" min="0" max="99999" step="1" pattern="\d*">
+      <button onclick="adjustQty('item5', 1)">+</button>
+    </td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744367166850.jpg" alt="Webber Naturals Krill Oil Plus"></td>
+    <td>Webber Naturals Krill Oil Plus</td>
+    <td>120 pcs</td>
+    <td>707</td>
+    <td>
+      <button onclick="adjustQty('item6', -1)">-</button>
+      <input type="number" id="item6" value="0" min="0" max="99999" step="1" pattern="\d*">
+      <button onclick="adjustQty('item6', 1)">+</button>
+    </td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744367365045.jpg" alt="Webber Naturals Lutein 25mg + Zeaxanthin"></td>
+    <td>Webber Naturals Lutein 25mg + Zeaxanthin</td>
+    <td>175 softgels</td>
+    <td>471</td>
+    <td>
+      <button onclick="adjustQty('item7', -1)">-</button>
+      <input type="number" id="item7" value="0" min="0" max="99999" step="1" pattern="\d*">
+      <button onclick="adjustQty('item7', 1)">+</button>
+    </td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744367936656.jpg" alt="Jamieson Vitamin B12 1200 mcg"></td>
+    <td>Jamieson Vitamin B12 1200 mcg</td>
+    <td>200 tabs</td>
+    <td>512</td>
+    <td>
+      <button onclick="adjustQty('item8', -1)">-</button>
+      <input type="number" id="item8" value="0" min="0" max="99999" step="1" pattern="\d*">
+      <button onclick="adjustQty('item8', 1)">+</button>
+    </td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744368095399.jpg" alt="Jamieson Calcium Magnesium + D3"></td>
+    <td>Jamieson Calcium Magnesium + D3</td>
+    <td>500 caplets</td>
+    <td>407</td>
+    <td>
+      <button onclick="adjustQty('item9', -1)">-</button>
+      <input type="number" id="item9" value="0" min="0" max="99999" step="1" pattern="\d*">
+      <button onclick="adjustQty('item9', 1)">+</button>
+    </td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744368380962.jpg" alt="Centrum Men 50+ Multivitamin"></td>
+    <td>Centrum Men 50+ Multivitamin</td>
+    <td>250 tabs</td>
+    <td>741</td>
+    <td>
+      <button onclick="adjustQty('item10', -1)">-</button>
+      <input type="number" id="item10" value="0" min="0" max="99999" step="1" pattern="\d*">
+      <button onclick="adjustQty('item10', 1)">+</button>
+    </td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744368901548.jpg" alt="Centrum Women 50+ Multivitamin"></td>
+    <td>Centrum Women 50+ Multivitamin</td>
+    <td>250 tabs</td>
+    <td>741</td>
+    <td>
+      <button onclick="adjustQty('item11', -1)">-</button>
+      <input type="number" id="item11" value="0" min="0" max="99999" step="1" pattern="\d*">
+      <button onclick="adjustQty('item11', 1)">+</button>
+    </td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744369009086.jpg" alt="Centrum Women Multivitamin"></td>
+    <td>Centrum Women Multivitamin</td>
+    <td>250 tabs</td>
+    <td>741</td>
+    <td>
+      <button onclick="adjustQty('item12', -1)">-</button>
+      <input type="number" id="item12" value="0" min="0" max="99999" step="1" pattern="\d*">
+      <button onclick="adjustQty('item12', 1)">+</button>
+    </td>
+  </tr>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/GorskyYu/inquiryimage/refs/heads/main/1744369181478.jpg" alt="Centrum Men Multivitamin"></td>
+    <td>Centrum Men Multivitamin</td>
+    <td>250 tabs</td>
+    <td>741</td>
+    <td>
+      <button onclick="adjustQty('item13', -1)">-</button>
+      <input type="number" id="item13" value="0" min="0" max="99999" step="1" pattern="\d*">
+      <button onclick="adjustQty('item13', 1)">+</button>
+    </td>
+  </tr>
+
+</table>
+<button onclick="submitQuote()">Submit</button>
+<script>
+  function adjustQty(id, delta) {
+    const input = document.getElementById(id);
+    let val = parseInt(input.value) + delta;
+    if (isNaN(val)) val = 0;
+    if (val < 0) val = 0;
+    if (val > 99999) val = 99999;
+    input.value = val;
+  }
+
+  function submitQuote() {
+    const items = [
+      { name: 'Zavida Vanilla & Hazelnut', qty: document.getElementById('item1').value },
+      { name: 'MadeGood Granola Minis', qty: document.getElementById('item2').value },
+      { name: 'Flamingo 5-Blade Razor + 13 Cartridges', qty: document.getElementById('item3').value },
+      { name: 'Webber Naturals Super Prostate Advanced', qty: document.getElementById('item4').value },
+      { name: 'Webber Naturals Magnesium Bisglycinate', qty: document.getElementById('item5').value },
+      { name: 'Webber Naturals Krill Oil Plus', qty: document.getElementById('item6').value },
+      { name: 'Webber Naturals Lutein 25mg + Zeaxanthin', qty: document.getElementById('item7').value },
+      { name: 'Jamieson Vitamin B12 1200 mcg', qty: document.getElementById('item8').value },
+      { name: 'Jamieson Calcium Magnesium + D3', qty: document.getElementById('item9').value },
+      { name: 'Centrum Men 50+ Multivitamin', qty: document.getElementById('item10').value },
+      { name: 'Centrum Women 50+ Multivitamin', qty: document.getElementById('item11').value },
+      { name: 'Centrum Women Multivitamin', qty: document.getElementById('item12').value },
+      { name: 'Centrum Men Multivitamin', qty: document.getElementById('item13').value },
+    ];
+
+    let lines = [];
+    items.forEach(item => {
+      if (parseInt(item.qty) > 0) {
+        lines.push(`- ${item.name}：${item.qty} 件`);
+      }
+    });
+
+    if (lines.length === 0) {
+      alert('請至少選擇一個商品數量');
+      return;
+    }
+
+    const subject = '提交訂單';
+    const bodyText = '您好，我要採購以下商品：\n' + lines.join('\n');
+    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=gorskyyu1024@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+    window.open(gmailLink, '_blank');
+  }
+</script>
+</body>
 </html>
